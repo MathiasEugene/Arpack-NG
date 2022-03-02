@@ -26,7 +26,7 @@ endif ()
 
 option(BUILD_SHARED_LIBS "Build shared libraries instead of static libraries" ON)
 option(MPI "Enable parallel support" OFF)
-option(ICB "Enable support for *[ae]upd_c with ISO_C_BINDING" OFF)
+option(ICB "Enable support for *[ae]upd_c with ISO_C_BINDING" ON)
 option(ICBEXMM "Enable support for matrix market example based on ICB" OFF)
 option(PYTHON3 "Enable python3 support" OFF)
 set(BOOST_PYTHON_LIBSUFFIX "" CACHE STRING "suffix to add to custom boost python libs")
