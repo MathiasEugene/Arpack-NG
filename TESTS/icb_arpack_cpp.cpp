@@ -215,8 +215,8 @@ int main() {
           1);
 
   // arpack with debug
-  complex_symmetric_runner<float>(1.);
-  complex_symmetric_runner<double>(1.e-05);
+  //complex_symmetric_runner<float>(1.);
+  //complex_symmetric_runner<double>(1.e-05);
 
   return 0;
 }

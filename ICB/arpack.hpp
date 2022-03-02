@@ -3,9 +3,32 @@
 
 #include "arpackdef.h"
 
-#include <complex.h>
+//#include <complex.h> 
 #include <complex>
+/*
+* ---------------------------------------------------------------------|
+* <complex.h> is necessary for using Microsoft CRT library, which      |
+* supports the use of complex values defined in C99.                   |
+* keyword complex or _Complex defined in C99 standard cannot be used;  |
+* instead, Microsoft CRT implemented substitutive types:               |
+*                                                                      |
+* | ----------------------C99------------------ | ----CRT-- |          |
+* |     float complex or float _Complex         | _Fcomplex |          |
+* | double complex or double _Complex           | _Fcomplex |          |
+* | long double complex or long double _Complex | _Lcomplex |          |
+*                                                                      |
+* <complex> is necessary for using the ISO standard implementation of  |
+* complex numbers, such as std::complex<double>, std::complex<float>   |
+*                                                                      |
+* ---------------------------------------------------------------------|
+*/
 
+//=====================================================================
+//
+//          namespace using C++11 standard
+//
+//=====================================================================
+/*
 namespace arpack {
 enum class which : int {
   /// 'LA' - compute the NEV largest (algebraic) eigenvalues
@@ -38,6 +61,46 @@ enum class howmny : int {
   /// SELECT.
   ritz_specified
 };
+*/
+
+//=====================================================================
+//
+//          namespace using C++03 standard
+//
+//=====================================================================
+namespace arpack {
+enum which {
+  /// 'LA' - compute the NEV largest (algebraic) eigenvalues
+  largest_algebraic,
+  /// 'SA' - compute the NEV smallest (algebraic) eigenvalues.
+  smallest_algebraic,
+  /// 'LM' - compute the NEV largest (in magnitude) eigenvalues.
+  largest_magnitude,
+  /// 'SM' - compute the NEV smallest (in magnitude) eigenvalues.
+  smallest_magnitude,
+  /// 'BE' - compute NEV eigenvalues, half from each end of the
+  /// spectrum.  When NEV is odd, compute one more from the
+  /// high end than from the low end.
+  both_ends
+};
+
+enum bmat{
+  /// B = 'I' -> standard eigenvalue problem A*x = lambda*x
+  identity,
+  /// B = 'G' -> generalized eigenvalue problem A*x = lambda*B*x
+  generalized
+};
+
+enum howmny {
+  /// 'A' Compute NEV Ritz vectors
+  ritz_vectors,
+  /// 'P' Compute NEV Schur vectors;
+  schur_vectors,
+  /// 'S' compute some of the Ritz vectors, specified by the logical array
+  /// SELECT.
+  ritz_specified
+};
+
 
 namespace internal {
 #include "arpack.h"
@@ -178,6 +241,13 @@ inline void neupd(a_int rvec, howmny const howmny_option, a_int* select,
                      ncv, v, ldv, iparam, ipntr, workd, workl, lworkl, &info);
 }
 
+
+// =============================================================================
+//      
+//                    Function for complex eigen values are commented
+// 
+// =============================================================================
+/*
 inline void naupd(a_int& ido, bmat const bmat_option, a_int n,
                   which const ritz_option, a_int nev, float tol,
                   std::complex<float>* resid, a_int ncv, std::complex<float>* v,
@@ -252,7 +322,8 @@ inline void neupd(a_int rvec, howmny const howmny_option, a_int* select,
                      reinterpret_cast<_Complex double*>(workd),
                      reinterpret_cast<_Complex double*>(workl), lworkl,
                      rwork, &info);
-}
+} */
+
 }  // namespace arpack
 
 #endif
