@@ -236,6 +236,12 @@ c           | overwrites workd(ipntr(1)).          |
 c           %--------------------------------------%
 c
             call av (n, workd(ipntr(1)), workd(ipntr(2)))
+
+c           DCOPY(N,DX,INCX,DY,INCY)  
+c           copies a vector, DX, to a vector, DY.    
+c           DX is DOUBLE PRECISION array, dimension ( 1 + ( N - 1 )*abs( INCX ) )  
+c           DY is DOUBLE PRECISION array, dimension ( 1 + ( N - 1 )*abs( INCY ) )
+
             call dcopy (n, workd(ipntr(2)),  1, workd(ipntr(1)), 1)
             call dgttrs  ('Notranspose', n, 1, adl, ad, adu, adu2, ipiv,
      &                  workd(ipntr(2)), n, ierr)
