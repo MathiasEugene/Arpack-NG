@@ -234,7 +234,8 @@ c           | The final result is returned to      |
 c           | workd(ipntr(2)). The result of A*x   |
 c           | overwrites workd(ipntr(1)).          |
 c           %--------------------------------------%
-c
+c               workd(ipntr(1)) -> x 
+c               workd(ipntr(2)) -> y
             call av (n, workd(ipntr(1)), workd(ipntr(2)))
 
 c           DCOPY(N,DX,INCX,DY,INCY)  
